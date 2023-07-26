@@ -7,21 +7,11 @@ function PasswordStrengthMeter({password}) {
             return 'None';
         } else if (password.length < 8) {
             return 'Weak';
-        } else if (/^(?=.*[a-zA-Z])+$/ 
-                || /^(?=.*[0-9])+$/
-                || /^(?=.*[!@#$%^&*()_+])+$/) {
-            return 'Almost Weak';
-        } else if (/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/.test(password) 
-                || /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_+])[a-zA-Z!@#$%^&*()_+]+$/.test(password) 
-                || /^(?=.*[0-9])(?=.*[!@#$%^&*()_+])[0-9!@#$%^&*()_+]+$/.test(password)) {
+        } else if (/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/.test(password) || /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_+])[a-zA-Z!@#$%^&*()_+]+$/.test(password) || /^(?=.*[0-9])(?=.*[!@#$%^&*()_+])[0-9!@#$%^&*()_+]+$/.test(password)) {
             return 'Medium';
         } else if (/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]+$/.test(password)) {
             return 'Strong';
         }
-    }
-
-    function isAlmostWeak() {
-        return defineStrength() === 'Almost Weak' ? 'red' : colorifyIndicator();
     }
 
     function colorifyIndicator() {
@@ -43,7 +33,7 @@ function PasswordStrengthMeter({password}) {
     return (
         <div>
             <div className='strength-indicators'>
-                <div className="indicator" style={{ backgroundColor: isAlmostWeak()}}></div>
+                <div className="indicator" style={{ backgroundColor: colorifyIndicator()}}></div>
                 <div className="indicator" style={{ backgroundColor: colorifyIndicator()}}></div>
                 <div className="indicator" style={{ backgroundColor: colorifyIndicator()}}></div>
             </div>
@@ -52,4 +42,4 @@ function PasswordStrengthMeter({password}) {
     )
 }
 
-export default PasswordStrengthMeter;
+export default PasswordStrengthMeter
