@@ -21,11 +21,7 @@ function PasswordStrengthMeter({password}) {
     }
 
     function isAlmostWeak() {
-        if (defineStrength() === 'Almost Weak') {
-            return 'red';
-        } else {
-            return colorifyIndicator();
-        }
+        return defineStrength() === 'Almost Weak' ? 'red' : colorifyIndicator();
     }
 
     function colorifyIndicator() {
